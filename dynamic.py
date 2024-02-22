@@ -8,7 +8,7 @@ def nothing(x):
     pass
 
 # 读取一张图片
-image = cv2.imread(Filepath.file12)  # 请将'your_image_path.jpg'替换为你的图片路径
+image = cv2.imread(Filepath.file0)  # 请将'your_image_path.jpg'替换为你的图片路径
 #image = cv2.resize(image, (720, 540))
 cv2.namedWindow('1',cv2.WINDOW_NORMAL)
 cv2.resizeWindow('1', 1440, 1080)

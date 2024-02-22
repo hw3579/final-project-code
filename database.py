@@ -10,3 +10,4 @@ class LUT_control_points:
 class Filepath:
     file9 = "./920240205_161109.jpg"
     file12 = "./1220240205_163531.jpg"
+    file0 = "./tuxiang.jpg"
