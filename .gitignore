@@ -2,7 +2,7 @@
 node_modules/
 
 # Ignore database files
-项目/
+项目/dataset/
 Xingyue/
 XX/
 
@@ -23,7 +23,8 @@ dist/
 # Ignore compiled binaries
 *.exe
 *.dll
-
+*.tif
+*.h5
 # Ignore package-lock.json file
 package-lock.json
 
