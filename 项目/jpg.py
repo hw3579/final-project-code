@@ -30,6 +30,7 @@ for root, dirs, files in os.walk(input_dir):
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             image = function.enhance_with_LUT(image)
             image = function.extract_yellow_area(image)
+            image = function.remove_dark_spots(image)
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
             # Rotate the image clockwise by 180 degrees

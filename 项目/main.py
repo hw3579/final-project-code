@@ -96,7 +96,7 @@ model.fit(
   epochs=100
 )
 
-model.save("yellow.h5")
+model.save("final.h5")
 import matplotlib.pyplot as plt
 
 # Get training history

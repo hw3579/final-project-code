@@ -8,13 +8,14 @@ def nothing(x):
     pass
 
 # 读取一张图片
-image = cv2.imread(Filepath.file0)  # 请将'your_image_path.jpg'替换为你的图片路径
+#image = cv2.imread(Filepath.file9)  # 请将'your_image_path.jpg'替换为你的图片路径
+image = cv2.imread("yellow1020240124_163438_180.jpg")
 #image = cv2.resize(image, (720, 540))
 cv2.namedWindow('1',cv2.WINDOW_NORMAL)
 cv2.resizeWindow('1', 1440, 1080)
 
 # 创建两个滑动条，分别用于调整Canny边缘检测的两个阈值
-cv2.createTrackbar('K', '1', 7, 50, nothing)
+cv2.createTrackbar('K', '1', 13, 50, nothing)   #k=13不错
 cv2.createTrackbar('Threshold1', '1', 100, 500, nothing)
 cv2.createTrackbar('Threshold2', '1', 200, 500, nothing)
 
@@ -32,15 +33,15 @@ while True:
 
     gray_yellow = cv2.cvtColor(blurred, cv2.COLOR_BGR2GRAY)
     # 使用Canny进行边缘检测
-    edges = cv2.Canny(gray_yellow, threshold1, threshold2)
+    #edges = cv2.Canny(gray_yellow, threshold1, threshold2)
+    edges = cv2.Laplacian(gray_yellow, cv2.CV_8U, ksize=3)
     # 将边缘图像作为蒙版应用在原始图像上
     masked_image = cv2.bitwise_and(image, image, mask=edges)
     
     # 显示蒙版应用后的图像
     cv2.imshow('1', masked_image)
-    # 显示模糊后的图片
-    #cv2.imshow('1', edges)
 
+    cv2.imwrite('xianyellow.jpg', masked_image)
     # 等待键盘输入，如果按下'q'键，则退出
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

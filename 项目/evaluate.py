@@ -6,12 +6,12 @@ import tensorflow as tf
 
 
 # Load the image
-image_path = "yellow10.520240205_161539_0.jpg"
+image_path = "final8.520240205_155840_0.jpg"
 image = cv2.imread(image_path)
 
 
 # Load the model
-model = tf.keras.models.load_model("yellow.h5")
+model = tf.keras.models.load_model("final.h5")
 class_names = ['10', '10.5', '11', '11.5', '12', '8', '8.5', '9', '9.5']
 
 batch_size = 32

@@ -53,6 +53,44 @@ def extract_yellow_area(image, distance=15):
     return result
 
 
+def remove_dark_spots(image):
+    """
+    移除图像中的黑色斑点
+
+    参数:
+    image: 输入图像，应为BGR格式
+
+    返回:
+    spots_removed: 去除黑色斑点后的图像
+    """
+
+    # 将图像从RGB转换为Lab颜色空间
+    lab = cv2.cvtColor(image, cv2.COLOR_RGB2Lab)
+
+    # 定义一个用于黑色的颜色范围，用于创建黑色斑点的掩码
+    lower_black = np.array([0, 0, 0])
+    upper_black = np.array([80, 255, 255])  # 亮度值80是任意选择的，可能需要调整
+
+    # 创建一个掩码，只选择图像的黑色区域
+    mask = cv2.inRange(lab, lower_black, upper_black)
+
+    # 对掩码应用形态学闭运算，以减少掩码中的黑色斑点
+    kernel = np.ones((3, 3), np.uint8)  # 核大小是任意选择的，可能需要调整
+    closing = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+
+    # 反转闭运算掩码
+    inverse_mask = cv2.bitwise_not(closing)
+
+    # 确保反转掩码是一个与原始图像一样的3通道图像
+    inverse_mask_3channel = cv2.cvtColor(inverse_mask, cv2.COLOR_GRAY2BGR)
+
+    # 使用反转掩码将原始图像中的黑色斑点设置为白色
+    spots_removed = cv2.bitwise_or(image, cv2.bitwise_not(inverse_mask_3channel))
+   
+    # 将图像转换回RGB格式
+    #spots_removed = cv2.cvtColor(spots_removed, cv2.COLOR_BGR2RGB)
+    return spots_removed
+
 def canny(image):
     """
     提取图像中的黄色边缘。
