@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from database import LUT_control_points, Filepath
 
-def extract_yellow_area(image, distance=20):
+def extract_yellow_area(image, distance=15):
     """
     提取图像中的黄色区域。
 
