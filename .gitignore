@@ -25,6 +25,7 @@ dist/
 *.dll
 *.tif
 *.h5
+*.jpg
 # Ignore package-lock.json file
 package-lock.json
 
